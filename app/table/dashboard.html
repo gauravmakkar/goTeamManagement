@@ -1,0 +1,22 @@
+{{employees}}
+<div class="row">
+  <div class="col-md-12">
+      <div class="col-md-4" data-ng-repeat="table in tables track by table.id" style="margin-top:30px;margin-bottom: 30px;">
+          <div class="col-sm-12" style="background-color: lightcyan;">
+              <!--<div  set-employee  class="col-sm-6" data-ng-repeat="seat in table.seats track by $index">-->
+                  <!--<div ng-click="editEmployeePosition(employee)">-->
+                      <!--Seat {{seat}} Employee {{employee.name}} -{{employee.id}}-->
+                  <!--</div>-->
+
+              <!--</div>-->
+
+              <div  ng-controller="EmployeeDetailsController"  class="col-sm-6" data-ng-repeat="seat in table.seats track by $index">
+                  <div ng-click="editEmployeePosition(employee)">
+                      Seat {{seat}} Employee {{employee.name}} -{{employee.id}}
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
