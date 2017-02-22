@@ -25,11 +25,13 @@ angular.module('seating.service', []).factory("employee", function () {
      * Bootstrapping data
      */
     var create_employees = function () {
-        employee_list.push(new Employee(1, "John", "A", "Software Engineer", {id: 1, seat: 1}))
-        employee_list.push(new Employee(2, "Bob", "A", "Sr. Software Engineer", {id: 1, seat: 2}))
-        employee_list.push(new Employee(3, "Ram", "B", "Test Engineer", {id: 2, seat: 3}))
-        employee_list.push(new Employee(4, "Mohan", "B", "Sr. Test Engineer", {id: 2, seat: 4}))
-        employee_list.push(new Employee(5, "Rock", "C", "Product Manager", {id: 4, seat: 3}))
+        employee_list.push(new Employee(1, "John Nash", "A", "Software Engineer", {id: 1, seat: 1}))
+        employee_list.push(new Employee(2, "Bob Builder", "A", "Sr. Software Engineer", {id: 1, seat: 2}))
+        employee_list.push(new Employee(3, "Ram Kumar Singhania", "B", "Test Engineer", {id: 2, seat: 3}))
+        employee_list.push(new Employee(4, "Mohan Singh", "B", "Sr. Test Engineer", {id: 2, seat: 4}))
+        employee_list.push(new Employee(5, "Rock Johnson", "C", "Product Manager", {id: 4, seat: 3}))
+        employee_list.push(new Employee(6, "Eric Smith", "C", "Chief Technical Officer", {id: 5, seat: 2}))
+        employee_list.push(new Employee(7, "Joern Kevin", "C", "Junior Engineer", {id: 6, seat: 3}))
     }
 
     /**

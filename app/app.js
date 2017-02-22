@@ -7,7 +7,5 @@ angular.module('seating', [
   'seating.dashboard.controller','ui.bootstrap'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
   $routeProvider.otherwise({redirectTo: '/table/dashboard'});
 }]);
