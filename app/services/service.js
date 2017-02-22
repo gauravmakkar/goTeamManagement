@@ -1,7 +1,7 @@
 /**
  * Created by Gaurav MphRx on 2/22/2017.
  */
-angular.module('myApp.service', []).factory("employee", function () {
+angular.module('seating.service', []).factory("employee", function () {
 
     /**
      * Employee Constructor

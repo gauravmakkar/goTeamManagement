@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('myApp.dashboard.controller', ['ngRoute', 'myApp.service'])
+angular.module('seating.dashboard.controller', ['ngRoute', 'seating.service'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/table/dashboard', {

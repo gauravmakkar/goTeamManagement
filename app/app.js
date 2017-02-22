@@ -1,10 +1,10 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('seating', [
   'ngRoute',
-  'myApp.service',
-  'myApp.dashboard.controller','ui.bootstrap'
+  'seating.service',
+  'seating.dashboard.controller','ui.bootstrap'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
