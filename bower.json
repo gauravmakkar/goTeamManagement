@@ -1,8 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "goTeamManagement",
+  "description": "A drag and drop application for seating arrangement of employees",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "https://github.com/gauravmakkar/goTeamManagement",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -12,7 +12,6 @@
     "angular-mocks": "~1.5.0",
     "html5-boilerplate": "^5.3.0",
     "bootstrap": "3.2.0",
-    "angular-bootstrap": "0.11.2",
-    "angular-gridster": "0.13.5"
+    "angular-bootstrap": "0.11.2"
   }
 }

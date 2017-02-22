@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "goTeamManagement",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "A drag and drop application for seating arrangement of employees",
+  "repository": "https://github.com/gauravmakkar/goTeamManagement",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
