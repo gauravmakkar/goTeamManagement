@@ -1,23 +1,24 @@
-{{employees.list}}
-<div class="row">
-  <div class="col-md-12">
-      <div class="col-md-4" data-ng-repeat="table in tables track by table.id" style="margin-top:30px;margin-bottom: 30px;">
-          <div class="col-sm-12" style="background-color: lightgray;">
-              <!--<div  set-employee   class="col-sm-6" style="padding:10px;height: 100px;" data-ng-repeat="seat in table.seats track by $index">-->
-                  <!--<div id="table_{{table.id}}_seat_{{seat}}" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"-->
-                       <!--ondragstart="drag(event)" style="padding:20px;height:80px;text-align:center;background-color: lightcyan;" ng-click="editEmployeePosition(employee)">-->
-                      <!--Seat {{seat}} Employee {{employee.name}} -{{employee.id}}-->
-                  <!--</div>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4 tbl" data-ng-repeat="table in tables track by table.id">
+                <div class="col-sm-12 text-center">Table {{table.id}}</div>
+                <div class="col-sm-12 bck_lightgray">
+                    <div class="col-sm-6 seat_area"
+                         data-ng-repeat="seat in table.seats track by $index">
+                        <div set-employee draggable="{{employee.id?true:false}}" class="seat" ng-style="{'background-color':employee.id?'lightCyan':'white'}"
+                             id="table_{{table.id}}_seat_{{seat}}" >
+                            <div class="text" ng-class="{'occupied':employee.id,'empty':!employee.id}">
+                                {{employee.id?employee.name:'Empty'}}
+                            </div>
 
-              <!--</div>-->
 
-              <div  set-employee  class="col-sm-6" style="padding:10px;height: 100px;" data-ng-repeat="seat in table.seats track by $index">
-                  <div id="table_{{table.id}}_seat_{{seat}}" draggable="true" droppable="true" style="padding:20px;height:80px;text-align:center;background-color: lightcyan;">
-                      Seat {{seat}} Employee {{employee.name}} -{{employee.id}}
-                  </div>
+                        </div>
 
-              </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 </div>
+

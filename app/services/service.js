@@ -3,6 +3,15 @@
  */
 angular.module('myApp.service', []).factory("employee", function () {
 
+    /**
+     * Employee Constructor
+     * @param id
+     * @param name
+     * @param team
+     * @param designation
+     * @param table
+     * @constructor
+     */
     var Employee = function (id, name, team, designation, table) {
         this.id = id
         this.name = name
@@ -12,6 +21,9 @@ angular.module('myApp.service', []).factory("employee", function () {
     }
     var employee_list = []
 
+    /**
+     * Bootstrapping data
+     */
     var create_employees = function () {
         employee_list.push(new Employee(1, "John", "A", "Software Engineer", {id: 1, seat: 1}))
         employee_list.push(new Employee(2, "Bob", "A", "Sr. Software Engineer", {id: 1, seat: 2}))
@@ -19,19 +31,38 @@ angular.module('myApp.service', []).factory("employee", function () {
         employee_list.push(new Employee(4, "Mohan", "B", "Sr. Test Engineer", {id: 2, seat: 4}))
         employee_list.push(new Employee(5, "Rock", "C", "Product Manager", {id: 4, seat: 3}))
     }
-    create_employees()
+
+    /**
+     * The method will find the employee filtering by its ID
+     * @param id
+     * @returns {{}}
+     */
     var findEmployeeById = function (id) {
         var found_employee = employee_list.filter(function (employee) {
             return employee.id == id
         })
         return found_employee.length > 0 ? found_employee[0] : {}
     }
+
+    /**
+     * The method will find the employee based on its Seat
+     * @param table
+     * @returns {{}}
+     */
     var findEmployeeByTable = function (table) {
         var found_employee = employee_list.filter(function (employee) {
             return employee.table.id == table.id && employee.table.seat == table.seat
         })
         return found_employee.length > 0 ? found_employee[0] : {}
     }
+
+    /**
+     * The method will used to update the position when an employee position
+     * is changed by drag and drop.
+     * @param id
+     * @param newEmployee
+     * @returns {{}}
+     */
     var editEmployee = function (id, newEmployee) {
         var employee = findEmployeeById(id)
         if (employee) {
@@ -42,28 +73,42 @@ angular.module('myApp.service', []).factory("employee", function () {
         }
         return employee
     }
+    /**
+     * The method will return the
+     * list of employees.
+     * @returns {Array}
+     */
     var list = function () {
         return employee_list
     }
-    // editEmployee(2,{id:2,name:"Boby",team:"A",designation:"Sr. Software Engineer",table:2})
+
+    create_employees()
+
     return {list: list, findEmployeeByTable: findEmployeeByTable, editEmployee: editEmployee}
 
-}).filter("findEmployeeByTableSeat", function (employee) {
-    return function (employeeList, table) {
-        return employee.findEmployeeByTable(table)
-    }
 }).directive("setEmployee", function (employee) {
+    /**
+     * The directive will set the draggable and droppable
+     * property of the employee
+     */
     return {
         restrict: "A",
         scope: true,
         link: function (scope, element, attrs) {
             scope.employee = employee.findEmployeeByTable({id: scope.table.id, seat: scope.seat})
-            if (scope.employee) {
-                element[0].addEventListener('dragstart', scope.handleDragStart, false);
-                element[0].addEventListener('dragend', scope.handleDragEnd, false);
-                element[0].addEventListener('drop', scope.handleDrop, false);
-                element[0].addEventListener('dragover', scope.handleDragOver, false);
-            }
+            scope.$watch('employee', function (n, o) {
+                if (n && n.id) {
+                    element[0].addEventListener('dragstart', scope.handleDragStart, false);
+                    element[0].addEventListener('dragend', scope.handleDragEnd, false);
+                    element[0].removeEventListener('drop', scope.handleDrop, false);
+                    element[0].removeEventListener('dragover', scope.handleDragOver, false);
+                } else {
+                    element[0].removeEventListener('dragstart', scope.handleDragStart, false);
+                    element[0].removeEventListener('dragend', scope.handleDragEnd, false);
+                    element[0].addEventListener('drop', scope.handleDrop, false);
+                    element[0].addEventListener('dragover', scope.handleDragOver, false);
+                }
+            })
 
 
         },
@@ -80,6 +125,12 @@ angular.module('myApp.service', []).factory("employee", function () {
             };
 
             $scope.handleDragEnd = function (e) {
+                var source = JSON.parse(e.dataTransfer.getData('json'))
+                console.log($scope.employee)
+                if (e.dataTransfer.dropEffect != 'none' || (source.table.id != $scope.table.id && source.table.seat != $scope.table.seat)) {
+                    $scope.employee = null
+                    $scope.$apply()  //Since we're communicating with non angular code, so to update the model, we need to manually run digest cycle.
+                }
                 this.style.opacity = '1.0';
             };
 
@@ -91,7 +142,6 @@ angular.module('myApp.service', []).factory("employee", function () {
                 updatedEmployee.table.seat = $scope.seat
                 $scope.employee = employee.editEmployee(updatedEmployee.id, updatedEmployee)
                 $scope.$apply()
-
             };
 
             $scope.handleDragOver = function (e) {
