@@ -144,6 +144,7 @@ angular.module('seating.service', []).factory("employee", function () {
                 updatedEmployee.table.seat = $scope.seat
                 $scope.employee = employee.editEmployee(updatedEmployee.id, updatedEmployee)
                 $scope.$apply()
+                creationNotification(updatedEmployee.name+" has been moved to Table "+updatedEmployee.table.id+" and Seat "+updatedEmployee.table.seat)
             };
 
             $scope.handleDragOver = function (e) {
