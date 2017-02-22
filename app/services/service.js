@@ -86,10 +86,10 @@ angular.module('myApp.service', []).factory("employee", function () {
             $scope.handleDrop = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                var dataText = JSON.parse(e.dataTransfer.getData('json'));
-                dataText.table.id = $scope.table.id
-                dataText.table.seat = $scope.seat
-                $scope.employee = employee.editEmployee(dataText.id, dataText)
+                var updatedEmployee = JSON.parse(e.dataTransfer.getData('json'));
+                updatedEmployee.table.id = $scope.table.id
+                updatedEmployee.table.seat = $scope.seat
+                $scope.employee = employee.editEmployee(updatedEmployee.id, updatedEmployee)
                 $scope.$apply()
 
             };
