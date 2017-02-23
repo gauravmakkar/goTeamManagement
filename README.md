@@ -65,11 +65,11 @@ By default all the resources are injected as minified files, we can
 debug the application using gulp tool.
 
 ```
-gulp minify:css
+gulp inject:css
 ```
 
 ```
-gulp minify:js
+gulp inject:js
 ```
 
 ```

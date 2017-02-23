@@ -12,7 +12,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var argv = require('yargs').argv
 
-gulp.task("minify:css", function () {
+gulp.task("inject:css", function () {
     var packageVersion = require("./package.json").version
     var injectCss = function (sources) {
         return target.pipe(require('gulp-inject')(sources))
@@ -44,7 +44,7 @@ gulp.task("minify:css", function () {
 })
 
 
-gulp.task("minify:js", function () {
+gulp.task("inject:js", function () {
     var packageVersion = require("./package.json").version
     var injectJs = function (sources) {
         return target.pipe(require('gulp-inject')(sources))
