@@ -8,10 +8,10 @@ To get you started you can simply clone the `goTeamManagement` repository and in
 
 ### Prerequisites
 
-You need git to clone the `goTeamManagement` repository. You can get git from [here][git].
+You need git to clone the `goTeamManagement` repository.
 
 We also use a number of Node.js tools to initialize and test `goTeamManagement`. You must have Node.js
-and its package manager (npm) installed. You can get them from [here][node].
+and its package manager (npm) installed. You can get them.
 
 ### Clone `goTeamManagement`
 
