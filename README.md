@@ -55,10 +55,22 @@ this server is:
 npm start
 ```
 
-Now browse to the app at [`localhost:8000/index.html`][local-app-url].
+Now browse to the app at [`localhost:8001/index.html`][local-app-url].
 
 
-**Before starting Protractor, open a separate terminal window and run:**
+
+### Run the application in debug mode
+
+By default all the resources are injected as minified files, we can
+debug the application using gulp tool.
+
+```
+gulp minify:css
+```
+
+```
+gulp minify:js
+```
 
 ```
 npm start
