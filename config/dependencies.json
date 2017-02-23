@@ -1,0 +1,25 @@
+{
+  "css": {
+    "thirdParty": [
+      "app/bower_components/html5-boilerplate/dist/css/normalize.css",
+      "app/bower_components/bootstrap/dist/css/bootstrap.min.css",
+      "app/bower_components/html5-boilerplate/dist/css/main.css"
+    ],
+    "self": [
+      "app/app.css"
+    ]
+  },
+  "js": {
+    "thirdParty": [
+      "app/bower_components/angular/angular.js",
+      "app/bower_components/angular-route/angular-route.js",
+      "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
+    ],
+    "self": [
+      "app/src/notification.js",
+      "app/app.js",
+      "app/services/service.js",
+      "app/table/dashboard.controller.js"
+    ]
+  }
+}

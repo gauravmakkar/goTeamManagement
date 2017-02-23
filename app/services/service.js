@@ -88,7 +88,7 @@ angular.module('seating.service', []).factory("employee", function () {
 
     return {list: list, findEmployeeByTable: findEmployeeByTable, editEmployee: editEmployee}
 
-}).directive("setEmployee", function (employee) {
+}).directive("setEmployee", ['employee',function (employee) {
     /**
      * The directive will set the draggable and droppable
      * property of the employee
@@ -114,7 +114,7 @@ angular.module('seating.service', []).factory("employee", function () {
 
 
         },
-        controller: function ($scope,$rootScope) {
+        controller: ['$scope','$rootScope',function ($scope,$rootScope) {
             $scope.handleDragStart = function (e) {
                 if (!$scope.employee || !$scope.employee.id) {
                     e.preventDefault();
@@ -158,6 +158,6 @@ angular.module('seating.service', []).factory("employee", function () {
                 e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
                 return false;
             };
-        }
+        }]
     }
-})
+}])
