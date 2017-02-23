@@ -55,7 +55,7 @@ this server is:
 npm start
 ```
 
-Now browse to the app at [`localhost:8001/index.html`][local-app-url].
+Now browse to the app at [`localhost:8001/app`].
 
 
 
