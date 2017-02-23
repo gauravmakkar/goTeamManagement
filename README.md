@@ -51,3 +51,11 @@ gulp inject:js
 ```
 npm start
 ```
+
+
+### Todo
+1. Filtering based on Teams.
+2. Beautification
+3. Storing the position of employees in HTML5 storage.
+
+
