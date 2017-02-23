@@ -114,21 +114,26 @@ angular.module('seating.service', []).factory("employee", function () {
 
 
         },
-        controller: function ($scope) {
+        controller: function ($scope,$rootScope) {
             $scope.handleDragStart = function (e) {
                 if (!$scope.employee || !$scope.employee.id) {
                     e.preventDefault();
                     e.stopPropagation();
                 } else {
                     this.style.opacity = '0.4';
+                    /**
+                     * Since we can't access e.dataTransfer.getData in handleDragEnd
+                     * so populating rootsope with the current employee
+                     * @type {{}|*|null}
+                     */
+                    $rootScope.currentEmployee=$scope.employee
                     e.dataTransfer.setData('json', JSON.stringify($scope.employee));
                 }
 
             };
 
             $scope.handleDragEnd = function (e) {
-                var source = JSON.parse(e.dataTransfer.getData('json'))
-                console.log($scope.employee)
+                var source = $rootScope.currentEmployee
                 if (e.dataTransfer.dropEffect != 'none' || (source.table.id != $scope.table.id && source.table.seat != $scope.table.seat)) {
                     $scope.employee = null
                     $scope.$apply()  //Since we're communicating with non angular code, so to update the model, we need to manually run digest cycle.
@@ -142,6 +147,7 @@ angular.module('seating.service', []).factory("employee", function () {
                 var updatedEmployee = JSON.parse(e.dataTransfer.getData('json'));
                 updatedEmployee.table.id = $scope.table.id
                 updatedEmployee.table.seat = $scope.seat
+                $rootScope.currentEmployee=null
                 $scope.employee = employee.editEmployee(updatedEmployee.id, updatedEmployee)
                 $scope.$apply()
                 creationNotification(updatedEmployee.name+" has been moved to Table "+updatedEmployee.table.id+" and Seat "+updatedEmployee.table.seat)
