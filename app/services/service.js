@@ -25,13 +25,13 @@ angular.module('seating.service', []).factory("employee", function () {
      * Bootstrapping data
      */
     var create_employees = function () {
-        employee_list.push(new Employee(1, "John Nash", "A", "Software Engineer", {id: 1, seat: 1}))
-        employee_list.push(new Employee(2, "Bob Builder", "A", "Sr. Software Engineer", {id: 1, seat: 2}))
-        employee_list.push(new Employee(3, "Ram Kumar Singhania", "B", "Test Engineer", {id: 2, seat: 3}))
-        employee_list.push(new Employee(4, "Mohan Singh", "B", "Sr. Test Engineer", {id: 2, seat: 4}))
-        employee_list.push(new Employee(5, "Rock Johnson", "C", "Product Manager", {id: 4, seat: 3}))
-        employee_list.push(new Employee(6, "Eric Smith", "C", "Chief Technical Officer", {id: 5, seat: 2}))
-        employee_list.push(new Employee(7, "Joern Kevin", "C", "Junior Engineer", {id: 6, seat: 3}))
+        employee_list.push(new Employee(100, "John Nash", "A", "Software Engineer", {id: 1, seat: 1}))
+        employee_list.push(new Employee(200, "Bob Builder", "A", "Sr. Software Engineer", {id: 1, seat: 2}))
+        employee_list.push(new Employee(300, "Ram Kumar Singhania", "B", "Test Engineer", {id: 2, seat: 3}))
+        employee_list.push(new Employee(400, "Mohan Singh", "B", "Sr. Test Engineer", {id: 2, seat: 4}))
+        employee_list.push(new Employee(500, "Rock Johnson", "C", "Product Manager", {id: 4, seat: 3}))
+        employee_list.push(new Employee(600, "Eric Smith", "C", "Chief Technical Officer", {id: 5, seat: 2}))
+        employee_list.push(new Employee(700, "Joern Kevin", "C", "Junior Engineer", {id: 6, seat: 3}))
     }
 
     /**
@@ -100,11 +100,22 @@ angular.module('seating.service', []).factory("employee", function () {
             scope.employee = employee.findEmployeeByTable({id: scope.table.id, seat: scope.seat})
             scope.$watch('employee', function (n, o) {
                 if (n && n.id) {
+                    var popoverContent='<div style="min-width: 200px;">'+"<div>Name: "+scope.employee.name+"</div>"+"<div>"+scope.employee.designation+"</div>"+"<div>Team: "+scope.employee.team+"</div>"+"<div>Employee Id: "+scope.employee.id+"</div>"+'<div>'
+                    $(element).popover({
+                        trigger: 'hover',
+                        html: true,
+                        content: popoverContent,
+                        placement: scope.employee.table.id%3==0?"left":'right'
+                    });
+                    element.bind('mousedown', function(){
+                        $(element).popover('hide')
+                    });
                     element[0].addEventListener('dragstart', scope.handleDragStart, false);
                     element[0].addEventListener('dragend', scope.handleDragEnd, false);
                     element[0].removeEventListener('drop', scope.handleDrop, false);
                     element[0].removeEventListener('dragover', scope.handleDragOver, false);
                 } else {
+                    $(element).popover('destroy');
                     element[0].removeEventListener('dragstart', scope.handleDragStart, false);
                     element[0].removeEventListener('dragend', scope.handleDragEnd, false);
                     element[0].addEventListener('drop', scope.handleDrop, false);
